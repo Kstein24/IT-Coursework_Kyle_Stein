@@ -1,0 +1,55 @@
+# Kyle Stein
+# Walsh College
+# IT 410
+# Program to combine employee data into a database-like structure using dictionaries
+
+
+# Initial employee data lists
+employee_numbers = [1121, 1122, 1127, 1132, 1137, 1138, 1152, 1157]
+employee_names = [
+    "Jackie Grainger",
+    "Jignesh Thakkar",
+    "Dion Green",
+    "Jacob Gerber",
+    "Sarah Sanderson",
+    "Brandon Heck",
+    "David Toma",
+    "Charles King"
+]
+employee_salaries = [22.22, 25.25, 28.75, 24.32, 23.45, 25.84, 22.65, 23.75]
+
+# Create total hourly rate list (includes benefits)
+total_hourly_rate = []
+for rate in employee_salaries:
+    total_hourly_rate.append(round(rate * 1.3, 2))
+
+# Create company raises list based on salary ranges
+company_raises = []
+for rate in employee_salaries:
+    if 22 <= rate < 24:
+        raise_amt = round(rate * 1.05, 2)
+    elif 24 <= rate < 26:
+        raise_amt = round(rate * 1.04, 2)
+    elif 26 <= rate < 28:
+        raise_amt = round(rate * 1.03, 2)
+    else:
+        raise_amt = round(rate * 1.02, 2)
+    company_raises.append(raise_amt)
+
+# Combine all employee data into a list of dictionaries
+# Each dictionary holds one employee’s complete information
+employee_database = []
+for i in range(len(employee_numbers)):
+    record = {
+        "Employee Number": employee_numbers[i],
+        "Employee Name": employee_names[i],
+        "Salary": employee_salaries[i],
+        "Total Hourly Rate": total_hourly_rate[i],
+        "Company Raise": company_raises[i]
+    }
+    employee_database.append(record)
+
+# Print final structured list of employee data
+print("Final Employee Database Structure:\n")
+for employee in employee_database:
+    print(employee)
